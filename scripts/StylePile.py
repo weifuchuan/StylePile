@@ -134,45 +134,129 @@ ElementConcept = [
     "Vivacious"
 ]
 
-ResultConcept = ["Not set","Random"] + ElementConcept
+ConceptMap = {
+    "广受好评": "Acclaimed",
+    "另类的": "Alternative",
+    "业余": "Amateur",
+    "人造的": "Artificial",
+    "获奖": "Award Winning",
+    "基础": "Basic",
+    "初学者": "Beginner",
+    "躁狂抑郁性精神病的": "Bipolar",
+    "孩子气": "Boyish",
+    "幼稚": "Childish",
+    "电影": "Cinematic",
+    "灵巧": "Clever",
+    "笨拙": "Clumsy",
+    "感知的": "Cognitive",
+    "精密的": "Sophisticated",
+    "压缩": "Compressed",
+    "可控": "Controllable",
+    "堕落": "Corrupted",
+    "损坏的": "Damaged",
+    "毁坏": "Destroyed",
+    "恶心": "Disgusting",
+    "分裂": "Divisive",
+    "戏剧性": "Dramatic",
+    "沉默": "Dumb",
+    "淘汰": "Eliminated",
+    "过多的": "Excessive",
+    "激动人心": "Exciting",
+    "极端": "Extreme",
+    "女性化": "Feminine",
+    "过滤": "Filtered",
+    "固定": "Fixated",
+    "固定的": "Fixed",
+    "愚蠢": "Foolish",
+    "脆弱的": "Fragile",
+    "少女风": "Girlish",
+    "华丽的": "Gorgeous",
+    "开创性": "Groundbreaking",
+    "讨厌": "Hated",
+    "隐藏": "Hidden",
+    "高度评价": "Highly Rated",
+    "令人毛骨悚然": "Horrifying",
+    "假想": "Imaginary",
+    "想象力": "Imaginative",
+    "模仿": "Imitated",
+    "厌倦": "Jaded",
+    "轻松愉快": "Light hearted",
+    "爱过": "Loved",
+    "低评级": "Low Rated",
+    "神奇": "Magical",
+    "男性": "Masculine",
+    "大师级": "Masterful",
+    "杰作": "Masterpiece",
+    "极简主义": "Maximalist",
+    "方法论": "Methodological",
+    "不为人理解的": "Misunderstood",
+    "世俗": "Mundane",
+    "过度加工": "Overprocessed",
+    "令人怜惜的": "Pathetic",
+    "PS": "Photoshopped",
+    "预览": "Preview",
+    "原始": "Raw",
+    "可回收": "Recycled",
+    "宗教": "Religious",
+    "粗糙的": "Rough",
+    "牺牲": "Sacrificial",
+    "亵渎": "Sacrilegious",
+    "原理图": "Schematic",
+    "简单的": "Simple",
+    "愚蠢的": "Stupid",
+    "值得信赖": "Trustworthy",
+    "难以置信": "Unbelievable",
+    "可以理解": "Understandable",
+    "出土/异域魔影": "Unearthed",
+    "未经过滤": "Unfiltered",
+    "未完成": "Unfinished",
+    "精神错乱": "Unhinged",
+    "共同的": "Universal",
+    "不成功": "Unsuccessful",
+    "可敬": "Venerable",
+    "有远见": "Visionary",
+    "活泼": "Vivacious"
+}
+
+ResultConcept = ["Not set","Random"] + list(ConceptMap.keys())
 
 ResultNames = [
-    "Photo",
-    "Digital Artwork",
-    "3D Rendering",
-    "Painting",
-    "Drawing",
-    "Vector Art"
+    "照片",
+    "数字艺术",
+    "3D渲染",
+    "绘画",
+    "绘图",
+    "矢量艺术"
 ]
 
 ResultTypeBefore = {
-    "Photo": "Photo",
-    "Digital Artwork": "Digital Artwork",
-    "3D Rendering": "Professional 3D rendering",
-    "Painting": "Painting",
-    "Drawing": "Drawing",
-    "Vector Art": "Vector image"
+    "照片": "Photo",
+    "数字艺术": "Digital Artwork",
+    "3D渲染": "Professional 3D rendering",
+    "绘画": "Painting",
+    "绘图": "Drawing",
+    "矢量艺术": "Vector image"
 }
 
-#"3D Rendering": ",Highly detailed,Art by senior Artist,Polycount,trending on CGSociety,trending on ArtStation",
+#"3D渲染": ",Highly detailed,Art by senior Artist,Polycount,trending on CGSociety,trending on ArtStation",
 #"Photo": ",HD,4K,8K,highly detailed,Sharp,Photo-realism,Professional photograph,Masterpiece",
     
 ResultTypePositives = {
-    "Photo": ",Highly Detailed",
-    "Digital Artwork": ",CGSociety,ArtStation",
-    "3D Rendering": ",CGSociety,ArtStation",
-    "Painting": " ",
-    "Drawing": " ",
-    "Vector Art": ",(Flat style:1.3),Illustration,Behance"
+    "照片": ",Highly Detailed",
+    "数字艺术": ",CGSociety,ArtStation",
+    "3D渲染": ",CGSociety,ArtStation",
+    "绘画": " ",
+    "绘图": " ",
+    "矢量艺术": ",(Flat style:1.3),Illustration,Behance"
 }
 
 ResultTypeNegatives = {
-    "Photo": ",Amateur,Low rated,Phone,Wedding,Frame,Painting,tumblr",
-    "Digital Artwork": ",Scribbles,Low quality,Low rated,Mediocre,3D rendering,Screenshot,Software,UI",
-    "3D Rendering": ",((Wireframe)),Polygons,Screenshot,Character design,Software,UI",
-    "Painting": "Low quality,Bad composition,Faded,(Photo:1.5),(Frame:1.3)",
-    "Drawing": ",Low quality,Photo,Artifacts,Table,Paper,Pencils,Pages,Wall",
-    "Vector Art": ",(Watermark:1.5),(Text:1.3)"
+    "照片": ",Amateur,Low rated,Phone,Wedding,Frame,Painting,tumblr",
+    "数字艺术": ",Scribbles,Low quality,Low rated,Mediocre,3D rendering,Screenshot,Software,UI",
+    "3D渲染": ",((Wireframe)),Polygons,Screenshot,Character design,Software,UI",
+    "绘画": "Low quality,Bad composition,Faded,(Photo:1.5),(Frame:1.3)",
+    "绘图": ",Low quality,Photo,Artifacts,Table,Paper,Pencils,Pages,Wall",
+    "矢量艺术": ",(Watermark:1.5),(Text:1.3)"
 }
 
 ResultType = {
@@ -264,28 +348,28 @@ TipsAndTricks = [
 
 Preset = {
     "None": "",
-    "Portraits": ",(close portrait:1.3),thematic background",
-    "Feminine portrait": ",(close portrait:1.3),(Feminine:1.4),(beautiful:1.4),(attractive:1.3),handsome,calendar pose,perfectly detailed eyes,studio lighting,thematic background",
-    "Masculine portrait": ",(close portrait:1.3),(Masculine:1.4),attractive,handsome,calendar pose,perfectly detailed eyes,studio lighting,thematic background",
-    "WaiFusion": ",close portrait,(manga:1.3),beautiful,attractive,handsome,trending on ArtStation,DeviantArt contest winner,CGSociety,ultrafine,detailed,studio lighting",
-    "Horrible Monsters": ",monster,ugly,surgery,evisceration,morbid,cut,open,rotten,mutilated,deformed,disfigured,malformed,missing limbs,extra limbs,bloody,slimy,goo,Richard Estes,Audrey Flack,Ralph Goings,Robert Bechtle,Tomasz Alen Kopera,H.R.Giger,Joel Boucquemont,ArtStation,DeviantArt contest winner,thematic background",
-    "Robots": ",robot,((cyborg)),machine,futuristic,concept Art by senior character Artist,featured on zbrush central,trending on polycount,trending on ArtStation,CGSociety,hard surface modeling",
-    "Retrofuturism": ",((retrofuturism)),(science fiction),dystopian Art,ultrafine,detailed,future tech,by Clarence Holbrook CArter,by Ed Emshwiller,CGSociety,ArtStation contest winner,trending on ArtStation,DeviantArt contest winner,Fallout",
-    "Propaganda": ",propaganda poster,soviet poster,sovietwave",
-    "Landscapes": ",naturalism,land Art,regionalism,shutterstock contest winner,trending on unsplash,featured on Flickr"
+    "肖像": ",(close portrait:1.3),thematic background",
+    "女性肖像": ",(close portrait:1.3),(Feminine:1.4),(beautiful:1.4),(attractive:1.3),handsome,calendar pose,perfectly detailed eyes,studio lighting,thematic background",
+    "男性肖像": ",(close portrait:1.3),(Masculine:1.4),attractive,handsome,calendar pose,perfectly detailed eyes,studio lighting,thematic background",
+    "二次元艺术": ",close portrait,(manga:1.3),beautiful,attractive,handsome,trending on ArtStation,DeviantArt contest winner,CGSociety,ultrafine,detailed,studio lighting",
+    "可怕的怪物": ",monster,ugly,surgery,evisceration,morbid,cut,open,rotten,mutilated,deformed,disfigured,malformed,missing limbs,extra limbs,bloody,slimy,goo,Richard Estes,Audrey Flack,Ralph Goings,Robert Bechtle,Tomasz Alen Kopera,H.R.Giger,Joel Boucquemont,ArtStation,DeviantArt contest winner,thematic background",
+    "机器人": ",robot,((cyborg)),machine,futuristic,concept Art by senior character Artist,featured on zbrush central,trending on polycount,trending on ArtStation,CGSociety,hard surface modeling",
+    "复古未来": ",((retrofuturism)),(science fiction),dystopian Art,ultrafine,detailed,future tech,by Clarence Holbrook CArter,by Ed Emshwiller,CGSociety,ArtStation contest winner,trending on ArtStation,DeviantArt contest winner,Fallout",
+    "宣传": ",propaganda poster,soviet poster,sovietwave",
+    "风景": ",naturalism,land Art,regionalism,shutterstock contest winner,trending on unsplash,featured on Flickr"
 }
 
 PresetNegatives = {
     "None": "",
-    "Portraits": ",robot eyes,distorted pupils,distorted eyes,Unnatural anatomy,strange anatomy,things on face",
-    "Feminine portrait": ",robot eyes,distorted pupils,distorted eyes,Unnatural anatomy,strange anatomy,things on face",
-    "Masculine portrait": ",robot eyes,distorted pupils,distorted eyes,Unnatural anatomy,strange anatomy,things on face",
-    "WaiFusion": ",things on face,Unnatural anatomy,strange anatomy",
-    "Horrible Monsters": ",(attractive),pretty,smooth,cArtoon,pixar,human",
-    "Robots": ",cartoon",
-    "Retrofuturism": ",extra limbs,malformed limbs,modern",
-    "Propaganda": ",extra limbs,malformed limbs,modern",
-    "Landscapes": ",((hdr)),((terragen)),((rendering)),(high contrast)"
+    "肖像": ",robot eyes,distorted pupils,distorted eyes,Unnatural anatomy,strange anatomy,things on face",
+    "女性肖像": ",robot eyes,distorted pupils,distorted eyes,Unnatural anatomy,strange anatomy,things on face",
+    "男性肖像": ",robot eyes,distorted pupils,distorted eyes,Unnatural anatomy,strange anatomy,things on face",
+    "二次元": ",things on face,Unnatural anatomy,strange anatomy",
+    "可怕的怪物": ",(attractive),pretty,smooth,cArtoon,pixar,human",
+    "机器人": ",cartoon",
+    "复古未来": ",extra limbs,malformed limbs,modern",
+    "宣传": ",extra limbs,malformed limbs,modern",
+    "风景": ",((hdr)),((terragen)),((rendering)),(high contrast)"
 }
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=->
@@ -322,9 +406,9 @@ class Script(scripts.Script):
         with gr.Tab("Parameters"):
             with gr.Row():
                 ddResultConcept = gr.Dropdown(
-                    ResultConcept, label="Conceptually", value="Not set")
+                    ResultConcept, label="概念", value="Not set")
                 ddCoreResultType = gr.Dropdown(
-                    list(ResultType.keys()), label="Image type", value="Not set")   
+                    list(ResultType.keys()), label="图片类型", value="Not set")   
                 slResultTypeStrength = gr.Slider(
                     0, 2, value=1.3, step=0.05, show_label=False)
             with gr.Row():
@@ -353,14 +437,14 @@ class Script(scripts.Script):
                 ddPreset = gr.Dropdown(list(Preset.keys()), label="Style influence (incomplete)", value="None")
             with gr.Row():
                 strSequentialPrompt = gr.Textbox(
-                    lines=3, label="Sequential prompts [X]", placeholder="Insert [X] anywhere in main prompt to sequentially insert values from here. Random values will be added here or to main prompt.")
+                    lines=3, label="顺序提示 [X]", placeholder="Insert [X] anywhere in main prompt to sequentially insert values from here. Random values will be added here or to main prompt. 在主提示中的任意位置插入 [X] 以从此处顺序插入值。 随机值将添加到此处或主提示。")
             with gr.Row():
                 strSubSequentialPrompt = gr.Textbox(
-                    lines=3, label="SubSequential prompts [Y]", placeholder="Insert [Y] in the final prompt <== to sequentially insert values from here (and increase prompt count). This is done after all other prompts and loops through all lines.")
+                    lines=3, label="SubSequential prompts [Y]", placeholder="Insert [Y] in the final prompt <== to sequentially insert values from here (and increase prompt count). This is done after all other prompts and loops through all lines. 在最后的提示<==中插入[Y]，从这里开始依次插入数值（并增加提示计数）。这是在所有其他提示之后进行的，并在所有行中循环。")
 
             with gr.Row():
                 strRandomPromptA = gr.Textbox(
-                    lines=3, label="Random [A]", placeholder="Insert [A] anywhere in main prompt (or [X] prompt) to randomly insert values from here.")
+                    lines=3, label="Random [A]", placeholder="Insert [A] anywhere in main prompt (or [X] prompt) to randomly insert values from here.在主提示符（或[X]提示符）的任何地方插入[A]，从这里随机插入数值。")
                 strRandomPromptB = gr.Textbox(
                     lines=3, label="Random [B]", placeholder="Insert [B] anywhere in main prompt (or [X] prompt) to randomly insert values from here.")
                 strRandomPromptC = gr.Textbox(
@@ -543,6 +627,38 @@ class Script(scripts.Script):
                 I made this because manually changing keywords, looking up possible styles, etc was a pain. It is meant as a fun tool to explore possibilities and make learning Stable Diffusion easier. If you have some ideas or, better yet, would like to contribute in some way*, just visit https://github.com/some9000/StylePile
 
                 *Hey, if you have a 12Gb graphics card just laying around I'm happy to take it (:
+
+
+你好，我是StylePile
+
+简介
+
+风格加码是一个混合和匹配系统，用于向提示语添加影响结果风格的元素。因此而得名。默认情况下，这些元素被放置在一个特定的顺序中，并给出强度值。这意味着结果有点像演化出来的。我已经为每个主要的图像类型生成了数千张图像，并调整了关键词，试图在大多数情况下给出预期的结果。当然，我们非常欢迎你的改进建议。
+
+基本工作流程
+
+你在这个脚本中选择额外的设置，然后点击标准的橙色生成按钮来获得结果。
+
+例如，如果你选择了绘画图像类型，那么几乎所有的结果都会看起来像绘画。选择 "心情 "会对整体外观产生一定的影响（如果是人形的东西，可能会表现出情绪，但也会改变颜色和整体感觉）。设置颜色将改变结果的总体色调。而设置 "视图 "将试图改变主体的观看方式。试图，因为视图似乎是最不可靠的关键词。这些元素按照影响的顺序排列，并由一定的强度值支持。这些基本设置会产生非常快速的结果，接近你想要的一般外观。
+
+![]({path.join(ResourceDir, "Artists.jpg") ''})
+
+继续，添加一个艺术动作将与图像类型相结合，影响结果的一般外观。这些风格是基于经典和现代绘画/艺术/设计运动（这是我经过数小时和数以千计的测试样本挑选出来的），并能对最终结果产生强烈的影响。要么会更现实，要么会更艺术，要么看起来像漫画书等等。一般来说，这是一个非常强大的元素，可以获得你想要的外观。它的影响可以通过上面的滑块来调整。实验一下数值，记住，任何超过1.5的数值都会开始变得混乱。以类似的方式，但更集中，你可以选择一个艺术家，当然，这对结果也会有非常明显的影响。目前，有135位艺术家、55种艺术风格和25种情感可供选择，并有预览图片表示。
+
+这些设置的强度被预设为1.3，因为这似乎是获得良好结果的黄金比例。有时，非常低的设置也有一个有趣的结果。你可以，而且应该自由地混合和匹配这些设置，以获得不同的结果。受影响或影响3D的经典绘画风格看起来相当有趣。摄影可以用一些更明亮、更艺术的风格等看起来很酷。有时将CFG比例提高到15、20或更高，也有助于将风格真正推到图像上。
+
+先进的工作流程
+
+StylePile可以超越生成过程，允许你用很少的额外工作来生成大量的不同结果。有两种类型的变量你可以使用： [X]和[R]。当你给你的提示符添加一个[X]时，它就会按顺序从顺序提示符文本区取值。你可以在那里有几十行，它们将按顺序被处理。当你在提示中添加[R]时，将从随机文本区中插入一个值来代替。通过这些组合，可以很容易地实现大量的提示信息。
+
+使用这个方法时，生成批次将在提示中移动，每批数量将设置有多少份给定的提示。如果种子不是随机的，它将随着每批数量的增加而增加。任何随机元素仍将被随机抽取。
+
+综上所述
+
+我做这个是因为手动改变关键词、查找可能的样式等是一件很痛苦的事。它是作为一个有趣的工具来探索各种可能性，使学习稳定扩散更容易。如果你有一些想法，或者更好的是，想以某种方式做出贡献*，就请访问https://github.com/some9000/StylePile。
+
+*嘿，如果你有一块12Gb的显卡，我很乐意接受它（：
+
             """)
 
         return [ddResultConcept,
@@ -740,7 +856,7 @@ class Script(scripts.Script):
                     if ddResultConcept == "Random":  
                         FinalConcept = random.choice(ElementConcept)
                     else:
-                        FinalConcept = ddResultConcept
+                        FinalConcept = ConceptMap.get(ddResultConcept)
                 else:
                     FinalConcept = ""
 
