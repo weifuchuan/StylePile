@@ -1,0 +1,72 @@
+⭐ Second Half: Settings and Training
+This is the tricky part. To train your Lora we'll use my ⭐ Lora trainer colab. It consists of a single cell with all the settings you need. Many of these settings don't need to be changed. However, this guide and the colab will explain what each of them do, such that you can play with them in the future.
+
+Here are the settings:
+
+▶️ Setup: Enter the same project name you used in the first half of the guide and it'll work automatically. Here you can also change the base model for training. There are 2 recommended default ones, but alternatively you can copy a direct download link to a custom model of your choice. Make sure to pick the same folder structure you used in the dataset maker.
+
+▶️ Processing: Here are the settings that change how your dataset will be processed.
+
+The resolution should stay at 512 this time, which is normal for Stable Diffusion. Increasing it makes training much slower, but it does help with finer details.
+
+flip_aug is a trick to learn more evenly, as if you had more images, but makes the AI confuse left and right, so it's your choice.
+
+shuffle_tags should always stay active if you use anime tags, as it makes prompting more flexible and reduces bias.
+
+activation_tags is important, set it to 1 if you added one during the dataset part of the guide. This is also called keep_tokens.
+
+▶️ Steps: We need to pay attention here. There are 4 variables at play: your number of images, the number of repeats, the number of epochs, and the batch size. These result in your total steps.
+
+You can choose to set the total epochs or the total steps, we will look at some examples in a moment. Too few steps will undercook the Lora and make it useless, and too many will overcook it and distort your images. This is why we choose to save the Lora every few epochs, so we can compare and decide later. For this reason, I recommend few repeats and many epochs.
+
+There are many ways to train a Lora. The method I personally follow focuses on balancing the epochs, such that I can choose between 10 and 20 epochs depending on if I want a fast cook or a slow simmer (which is better for styles). Also, I have found that more images generally need more steps to stabilize. Thanks to the new min_snr_gamma option, Loras take less epochs to train. Here are some healthy values for you to try:
+
+20 images × 10 repeats × 10 epochs ÷ 2 batch size = 1000 steps
+
+100 images × 3 repeats × 10 epochs ÷ 2 batch size = 1500 steps
+
+400 images × 1 repeat × 10 epochs ÷ 2 batch size = 2000 steps
+
+1000 images × 1 repeat × 10 epochs ÷ 3 batch size = 3300 steps
+
+▶️ Learning: The most important settings. However, you don't need to change any of these your first time. In any case:
+
+The unet learning rate dictates how fast your Lora will absorb information. Like with steps, if it's too small the Lora won't do anything, and if it's too large the Lora will deepfry every image you generate. There's a flexible range of working values, specially since you can change the intensity of the lora in prompts. Assuming you set dim between 8 and 32 (see below), I recommend 5e-4 unet for almost all situations. If you want a slow simmer, 1e-4 or 2e-4 will be better. Note that these are in scientific notation: 1e-4 = 0.0001
+
+The text encoder learning rate is less important, specially for styles. It helps learn tags better, but it'll still learn them without it. It is generally accepted that it should be either half or a fifth of the unet, good values include 1e-4 or 5e-5. Use google as a calculator if you find these small values confusing.
+
+The scheduler guides the learning rate over time. This is not critical, but still helps. I always use cosine with 3 restarts, which I personally feel like it keeps the Lora "fresh". Feel free to experiment with cosine, constant, and constant with warmup. Can't go wrong with those. There's also the warmup ratio which should help the training start efficiently, and the default of 5% works well.
+
+▶️ Structure: Here is where you choose the type of Lora from the 3 I explained in the beginning. Personally I recommend you stick with LoRA for characters and LoCon for styles. LoHas are hard to get right.
+
+The dim/alpha mean the size and scaling of your Lora, and they are controversial: For months everyone taught each other that 128/128 was the best, and this is because of experiments wherein it resulted in the best details. However these experiments were flawed, as it was not known at the time that lowering the dim and alpha requires you to raise the learning rate to produce the same level of detail. This is unfortunate as these Lora files are 144 MB which is completely overkill. I personally use 16/8 which works great for characters and is only 18 MB. Nowadays the following values are recommended (although more experiments are welcome):
+
+
+▶️ Ready: Now you're ready to run this big cell which will train your Lora. It will take 5 minutes to boot up, after which it starts performing the training steps. In total it should be less than an hour, and it will put the results in your Google Drive.
+
+🏁 Third Half: Testing
+You read that right. I lied! 😈 There are 3 parts to this guide.
+
+When you finish your Lora you still have to test it to know if it's good. Go to your Google Drive inside the /lora_training/outputs/ folder, and download everything inside your project name's folder. Each of these is a different Lora saved at different epochs of your training. Each of them has a number like 01, 02, 03, etc.
+
+Here's a simple workflow to find the optimal way to use your Lora:
+
+Put your final Lora in your prompt with a weight of 0.7 or 1, and include some of the most common tags you saw during the tagging part of the guide. You should see a clear effect, hopefully similar to what you tried to train. Adjust your prompt until you're either satisfied or can't seem to get it any better.
+
+Use the X/Y/Z plot to compare different epochs. This is a builtin feature in webui. Go to the bottom of the generation parameters and select the script. Put the Lora of the first epoch in your prompt (like "<lora:projectname-01:0.7>"), and on the script's X value write something like "-01, -02, -03", etc. Make sure the X value is in "Prompt S/R" mode. These will perform replacements in your prompt, causing it to go through the different numbers of your lora so you can compare their quality. You can first compare every 2nd or every 5th epoch if you want to save time. You should ideally do batches of images to compare more fairly.
+
+Once you've found your favorite epoch, try to find the best weight. Do an X/Y/Z plot again, this time with an X value like "0.5>, 0.6>, 0.7>, 0.8>, 0.9>, 1>". It will replace a small part of your prompt to go over different lora weights. Again it's better to compare in batches. You're looking for a weight that results in the best detail but without distorting the image. If you want you can do steps 2 and 3 together as X/Y, it'll take longer but be more thorough.
+
+If you found results you liked, congratulations! Keep testing different situations, angles, clothes, etc, to see if your Lora can be creative and do things that weren't in the training data.
+
+Finally, here are some things that might have gone wrong:
+
+If your Lora doesn't do anything or very little, we call it "undercooked" and you probably had a unet learning rate too low or needed to train longer. Make sure you didn't just make a mistake when prompting.
+
+If your Lora does work but it doesn't resemble what you wanted, again it might just be undercooked, or your dataset was low quality (images and/or tags). Some concepts are much harder to train, so you should seek assistance from the community if you feel lost.
+
+If your Lora produces distorted images or artifacts, and earlier epochs don't help, or you even get a "nan" error, we call it "overcooked" and your learning rate or repeats were too high.
+
+If your Lora is too strict in what it can do, we'll call it "overfit". Your dataset was probably too small or tagged poorly, or it's slightly overcooked.
+
+If you got something usable, that's it, now upload it to Civitai for the world to see. Don't be shy. Cheers!
